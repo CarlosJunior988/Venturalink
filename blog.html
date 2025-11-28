@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Docs | Venturalink</title>
+  <title>Blog | Venturalink</title>
   <link rel="icon" type="image/png" href="V.png">
   <link rel="stylesheet" href="styles/mainindex.css">
   <style>
@@ -38,71 +38,56 @@
       vertical-align: middle;
       filter: drop-shadow(0 0 8px #667eea);
     }
-    .api-section {
-      max-width: 900px;
+    .blog-section {
+      max-width: 800px;
       margin: 3rem auto 2rem auto;
       background: rgba(34,36,58,0.95);
       border-radius: 1.5rem;
       padding: 2.5rem 2rem;
       box-shadow: 0 8px 32px rgba(102,126,234,0.12);
-      text-align: left;
+      text-align: center;
     }
-    .api-section h1 {
+    .blog-section h1 {
       color: #667eea;
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
-      text-align: center;
     }
-    .api-section p {
+    .blog-section p {
       margin-bottom: 2rem;
       color: #aab4e8;
       font-size: 1.1rem;
-      text-align: center;
     }
-    .api-endpoint {
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .blog-post {
       background: #23243a;
       border-radius: 1rem;
       padding: 1.5rem;
       box-shadow: 0 2px 12px rgba(102,126,234,0.08);
-      margin-bottom: 2rem;
+      text-align: left;
+      transition: box-shadow 0.2s;
     }
-    .endpoint-title {
+    .blog-post:hover {
+      box-shadow: 0 4px 24px rgba(102,126,234,0.18);
+    }
+    .blog-post-title {
       color: #667eea;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
-    .endpoint-method {
-      font-weight: bold;
-      color: #764ba2;
-      margin-right: 1rem;
-    }
-    .endpoint-url {
-      font-family: monospace;
-      color: #e4e8f7;
-      background: #18192b;
-      padding: 0.2rem 0.6rem;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-    }
-    .endpoint-desc {
-      color: #e4e8f7;
-      margin: 0.7rem 0 0.5rem 0;
-    }
-    .endpoint-params {
+    .blog-post-meta {
       color: #aab4e8;
-      font-size: 0.98rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
-    .endpoint-example {
-      background: #18192b;
+    .blog-post-summary {
       color: #e4e8f7;
-      font-family: monospace;
-      border-radius: 0.5rem;
-      padding: 0.8rem 1rem;
-      margin-top: 0.5rem;
-      font-size: 0.98rem;
-      overflow-x: auto;
+      font-size: 1.08rem;
     }
     /* Footer override for dark theme */
     .premium-footer {
@@ -156,10 +141,7 @@
         <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
         <a href="pricing.html" class="nav-link" data-text="Pricing"><span>Pricing</span></a>
         <a href="contact.html" class="nav-link" data-text="Contact"><span>Contact</span></a>
-        <a href="blog.html" class="nav-link" data-text="Blog"><span>Blog</span></a>
-        <a href="help.html" class="nav-link" data-text="Help"><span>Help Center</span></a>
-        <a href="guides.html" class="nav-link" data-text="Guides"><span>Guides</span></a>
-        <a href="api.html" class="nav-link active" data-text="API"><span>API Docs</span></a>
+        <a href="blog.html" class="nav-link active" data-text="Blog"><span>Blog</span></a>
         <a href="login.html" class="nav-link" data-text="Login"><span>Login</span></a>
         <a href="register.html" class="nav-link nav-link-cta"><span>Register</span><div class="nav-link-bg"></div></a>
       </div>
@@ -167,79 +149,32 @@
   </header>
 
   <main>
-    <section class="api-section">
-      <h1>Venturalink API Documentation</h1>
+    <section class="blog-section">
+      <h1>Venturalink Blog</h1>
       <p>
-        Integrate with Venturalink using our RESTful API. Below are some example endpoints and usage.
+        Insights, tips, and stories from the world of startups, investing, and entrepreneurship.
       </p>
-      <div class="api-endpoint">
-        <div class="endpoint-title">
-          <span class="endpoint-method">GET</span>
-          <span class="endpoint-url">/api/v1/startups</span>
+      <div class="blog-list">
+        <div class="blog-post">
+          <div class="blog-post-title">How to Pitch Your Startup to Investors</div>
+          <div class="blog-post-meta">By Team Venturalink &middot; April 2025</div>
+          <div class="blog-post-summary">
+            Learn the key elements of a successful pitch, what investors look for, and how to make your business stand out in a crowded market.
+          </div>
         </div>
-        <div class="endpoint-desc">
-          Retrieve a list of all startups registered on Venturalink.
+        <div class="blog-post">
+          <div class="blog-post-title">Top 5 Mistakes Founders Make (And How to Avoid Them)</div>
+          <div class="blog-post-meta">By Kavlin Kaur &middot; March 2025</div>
+          <div class="blog-post-summary">
+            Avoid common pitfalls in your startup journey with these practical tips from experienced entrepreneurs and mentors.
+          </div>
         </div>
-        <div class="endpoint-params">
-          <strong>Query Params:</strong> <code>category</code> (optional), <code>country</code> (optional)
-        </div>
-        <div class="endpoint-example">
-          Example:<br>
-          <code>GET https://venturalink.com/api/v1/startups?category=fintech&country=IN</code>
-        </div>
-      </div>
-      <div class="api-endpoint">
-        <div class="endpoint-title">
-          <span class="endpoint-method">POST</span>
-          <span class="endpoint-url">/api/v1/investor/register</span>
-        </div>
-        <div class="endpoint-desc">
-          Register a new investor account.
-        </div>
-        <div class="endpoint-params">
-          <strong>Body:</strong> <code>name</code>, <code>email</code>, <code>password</code>
-        </div>
-        <div class="endpoint-example">
-          Example:<br>
-          <code>
-            POST https://venturalink.com/api/v1/investor/register<br>
-            { "name": "Amit", "email": "amit@investor.com", "password": "securepass" }
-          </code>
-        </div>
-      </div>
-      <div class="api-endpoint">
-        <div class="endpoint-title">
-          <span class="endpoint-method">GET</span>
-          <span class="endpoint-url">/api/v1/investor/{id}</span>
-        </div>
-        <div class="endpoint-desc">
-          Get details of a specific investor by ID.
-        </div>
-        <div class="endpoint-params">
-          <strong>Path Param:</strong> <code>id</code> (required)
-        </div>
-        <div class="endpoint-example">
-          Example:<br>
-          <code>GET https://venturalink.com/api/v1/investor/12345</code>
-        </div>
-      </div>
-      <div class="api-endpoint">
-        <div class="endpoint-title">
-          <span class="endpoint-method">POST</span>
-          <span class="endpoint-url">/api/v1/startup/register</span>
-        </div>
-        <div class="endpoint-desc">
-          Register a new startup.
-        </div>
-        <div class="endpoint-params">
-          <strong>Body:</strong> <code>name</code>, <code>founder</code>, <code>email</code>, <code>description</code>
-        </div>
-        <div class="endpoint-example">
-          Example:<br>
-          <code>
-            POST https://venturalink.com/api/v1/startup/register<br>
-            { "name": "TechNova", "founder": "Priya", "email": "priya@technova.com", "description": "AI-powered solutions" }
-          </code>
+        <div class="blog-post">
+          <div class="blog-post-title">Investor Trends in 2025: What’s Hot?</div>
+          <div class="blog-post-meta">By Team Venturalink &middot; February 2025</div>
+          <div class="blog-post-summary">
+            Explore the latest trends in startup funding, sectors attracting the most capital, and how you can position your business for success.
+          </div>
         </div>
       </div>
     </section>
@@ -317,5 +252,4 @@
       </div>
     </div>
   </footer>
-  <script type="module" src="scripts/main.js"></script>
-</body>
+  <script type
