@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog | Venturalink</title>
+  <title>Help Center | Venturalink</title>
   <link rel="icon" type="image/png" href="V.png">
   <link rel="stylesheet" href="styles/mainindex.css">
   <style>
@@ -38,8 +38,8 @@
       vertical-align: middle;
       filter: drop-shadow(0 0 8px #667eea);
     }
-    .blog-section {
-      max-width: 800px;
+    .help-section {
+      max-width: 700px;
       margin: 3rem auto 2rem auto;
       background: rgba(34,36,58,0.95);
       border-radius: 1.5rem;
@@ -47,47 +47,37 @@
       box-shadow: 0 8px 32px rgba(102,126,234,0.12);
       text-align: center;
     }
-    .blog-section h1 {
+    .help-section h1 {
       color: #667eea;
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
     }
-    .blog-section p {
+    .help-section p {
       margin-bottom: 2rem;
       color: #aab4e8;
       font-size: 1.1rem;
     }
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+    .faq-list {
+      text-align: left;
       margin-top: 2rem;
     }
-    .blog-post {
+    .faq-item {
+      margin-bottom: 1.5rem;
       background: #23243a;
       border-radius: 1rem;
-      padding: 1.5rem;
+      padding: 1.2rem 1rem;
       box-shadow: 0 2px 12px rgba(102,126,234,0.08);
-      text-align: left;
-      transition: box-shadow 0.2s;
     }
-    .blog-post:hover {
-      box-shadow: 0 4px 24px rgba(102,126,234,0.18);
-    }
-    .blog-post-title {
+    .faq-question {
       color: #667eea;
-      font-size: 1.5rem;
+      font-size: 1.15rem;
+      font-weight: 600;
       margin-bottom: 0.5rem;
     }
-    .blog-post-meta {
-      color: #aab4e8;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-    .blog-post-summary {
+    .faq-answer {
       color: #e4e8f7;
-      font-size: 1.08rem;
+      font-size: 1.05rem;
     }
     /* Footer override for dark theme */
     .premium-footer {
@@ -141,7 +131,8 @@
         <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
         <a href="pricing.html" class="nav-link" data-text="Pricing"><span>Pricing</span></a>
         <a href="contact.html" class="nav-link" data-text="Contact"><span>Contact</span></a>
-        <a href="blog.html" class="nav-link active" data-text="Blog"><span>Blog</span></a>
+        <a href="blog.html" class="nav-link" data-text="Blog"><span>Blog</span></a>
+        <a href="help.html" class="nav-link active" data-text="Help"><span>Help Center</span></a>
         <a href="login.html" class="nav-link" data-text="Login"><span>Login</span></a>
         <a href="register.html" class="nav-link nav-link-cta"><span>Register</span><div class="nav-link-bg"></div></a>
       </div>
@@ -149,32 +140,27 @@
   </header>
 
   <main>
-    <section class="blog-section">
-      <h1>Venturalink Blog</h1>
+    <section class="help-section">
+      <h1>Help Center</h1>
       <p>
-        Insights, tips, and stories from the world of startups, investing, and entrepreneurship.
+        Find answers to common questions and get support for using Venturalink.
       </p>
-      <div class="blog-list">
-        <div class="blog-post">
-          <div class="blog-post-title">How to Pitch Your Startup to Investors</div>
-          <div class="blog-post-meta">By Team Venturalink &middot; April 2025</div>
-          <div class="blog-post-summary">
-            Learn the key elements of a successful pitch, what investors look for, and how to make your business stand out in a crowded market.
-          </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">How do I register on Venturalink?</div>
+          <div class="faq-answer">Click on the "Register" button in the navigation bar and fill out the registration form with your details.</div>
         </div>
-        <div class="blog-post">
-          <div class="blog-post-title">Top 5 Mistakes Founders Make (And How to Avoid Them)</div>
-          <div class="blog-post-meta">By Kavlin Kaur &middot; March 2025</div>
-          <div class="blog-post-summary">
-            Avoid common pitfalls in your startup journey with these practical tips from experienced entrepreneurs and mentors.
-          </div>
+        <div class="faq-item">
+          <div class="faq-question">How can I connect with investors or entrepreneurs?</div>
+          <div class="faq-answer">After logging in, use the platform’s search and messaging features to find and connect with relevant users.</div>
         </div>
-        <div class="blog-post">
-          <div class="blog-post-title">Investor Trends in 2025: What’s Hot?</div>
-          <div class="blog-post-meta">By Team Venturalink &middot; February 2025</div>
-          <div class="blog-post-summary">
-            Explore the latest trends in startup funding, sectors attracting the most capital, and how you can position your business for success.
-          </div>
+        <div class="faq-item">
+          <div class="faq-question">Is my data secure?</div>
+          <div class="faq-answer">Yes, Venturalink uses industry-standard security practices to keep your data safe and private.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Where can I get more support?</div>
+          <div class="faq-answer">You can contact our support team via the Contact page or email us at support@venturalink.com.</div>
         </div>
       </div>
     </section>
@@ -252,4 +238,6 @@
       </div>
     </div>
   </footer>
-  <script type
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
