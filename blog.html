@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy | Venturalink</title>
+  <title>Blog | Venturalink</title>
   <link rel="icon" type="image/png" href="V.png">
   <link rel="stylesheet" href="styles/mainindex.css">
   <style>
@@ -15,25 +15,12 @@
       min-height: 100vh;
     }
     .main-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
       background: #23243a;
       box-shadow: 0 2px 16px rgba(102,126,234,0.08);
-      z-index: 100;
       padding: 0.5rem 0;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .navbar {
-      width: 100%;
-      max-width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 2rem;
     }
     .logo-container {
       display: flex;
@@ -51,71 +38,56 @@
       vertical-align: middle;
       filter: drop-shadow(0 0 8px #667eea);
     }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-    .nav-link {
-      color: #e4e8f7;
-      text-decoration: none;
-      font-size: 1.08rem;
-      padding: 0.4rem 1rem;
-      border-radius: 0.5rem;
-      transition: background 0.2s, color 0.2s;
-      position: relative;
-    }
-    .nav-link.active,
-    .nav-link:hover {
-      background: #2d2e4a;
-      color: #764ba2;
-    }
-    .nav-link-cta {
-      background: #667eea;
-      color: #fff !important;
-      font-weight: 600;
-      position: relative;
-      overflow: hidden;
-    }
-    .nav-link-cta:hover {
-      background: #764ba2;
-      color: #fff !important;
-    }
-    main {
-      margin-top: 90px;
-    }
-    .privacy-section {
-      max-width: 900px;
+    .blog-section {
+      max-width: 800px;
       margin: 3rem auto 2rem auto;
       background: rgba(34,36,58,0.95);
       border-radius: 1.5rem;
       padding: 2.5rem 2rem;
       box-shadow: 0 8px 32px rgba(102,126,234,0.12);
-      text-align: left;
+      text-align: center;
     }
-    .privacy-section h1 {
+    .blog-section h1 {
       color: #667eea;
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
-      text-align: center;
     }
-    .privacy-section h2 {
-      color: #764ba2;
-      font-size: 1.3rem;
+    .blog-section p {
+      margin-bottom: 2rem;
+      color: #aab4e8;
+      font-size: 1.1rem;
+    }
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
       margin-top: 2rem;
-      margin-bottom: 0.7rem;
     }
-    .privacy-section p, .privacy-section ul {
-      color: #e4e8f7;
-      font-size: 1.08rem;
+    .blog-post {
+      background: #23243a;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 12px rgba(102,126,234,0.08);
+      text-align: left;
+      transition: box-shadow 0.2s;
+    }
+    .blog-post:hover {
+      box-shadow: 0 4px 24px rgba(102,126,234,0.18);
+    }
+    .blog-post-title {
+      color: #667eea;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .blog-post-meta {
+      color: #aab4e8;
+      font-size: 0.95rem;
       margin-bottom: 1rem;
     }
-    .privacy-section ul {
-      padding-left: 1.5rem;
-    }
-    .privacy-section li {
-      margin-bottom: 0.5rem;
+    .blog-post-summary {
+      color: #e4e8f7;
+      font-size: 1.08rem;
     }
     /* Footer override for dark theme */
     .premium-footer {
@@ -138,7 +110,7 @@
   </style>
 </head>
 <body>
-  <!-- Header (fixed navbar) -->
+  <!-- Header -->
   <header class="main-header">
     <nav class="navbar" id="main-nav">
       <div class="logo">
@@ -169,12 +141,7 @@
         <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
         <a href="pricing.html" class="nav-link" data-text="Pricing"><span>Pricing</span></a>
         <a href="contact.html" class="nav-link" data-text="Contact"><span>Contact</span></a>
-        <a href="blog.html" class="nav-link" data-text="Blog"><span>Blog</span></a>
-        <a href="help.html" class="nav-link" data-text="Help"><span>Help Center</span></a>
-        <a href="guides.html" class="nav-link" data-text="Guides"><span>Guides</span></a>
-        <a href="api.html" class="nav-link" data-text="API"><span>API Docs</span></a>
-        <a href="terms.html" class="nav-link" data-text="Terms"><span>Terms of Service</span></a>
-        <a href="privacy.html" class="nav-link active" data-text="Privacy"><span>Privacy Policy</span></a>
+        <a href="blog.html" class="nav-link active" data-text="Blog"><span>Blog</span></a>
         <a href="login.html" class="nav-link" data-text="Login"><span>Login</span></a>
         <a href="register.html" class="nav-link nav-link-cta"><span>Register</span><div class="nav-link-bg"></div></a>
       </div>
@@ -182,46 +149,34 @@
   </header>
 
   <main>
-    <section class="privacy-section">
-      <h1>Privacy Policy</h1>
+    <section class="blog-section">
+      <h1>Venturalink Blog</h1>
       <p>
-        Your privacy is important to us. This policy explains how Venturalink collects, uses, and protects your information.
+        Insights, tips, and stories from the world of startups, investing, and entrepreneurship.
       </p>
-      <h2>1. Information We Collect</h2>
-      <ul>
-        <li>Personal information you provide during registration (name, email, etc.).</li>
-        <li>Usage data, such as pages visited and actions taken on the platform.</li>
-        <li>Cookies and similar technologies for analytics and preferences.</li>
-      </ul>
-      <h2>2. How We Use Your Information</h2>
-      <ul>
-        <li>To provide and improve our services.</li>
-        <li>To communicate with you about your account and updates.</li>
-        <li>To personalize your experience on Venturalink.</li>
-      </ul>
-      <h2>3. Data Protection</h2>
-      <p>
-        We use industry-standard security measures to protect your data from unauthorized access and disclosure.
-      </p>
-      <h2>4. Sharing of Information</h2>
-      <ul>
-        <li>We do not sell your personal information.</li>
-        <li>We may share data with trusted partners for service delivery, under strict confidentiality agreements.</li>
-        <li>We may disclose information if required by law.</li>
-      </ul>
-      <h2>5. Your Choices</h2>
-      <ul>
-        <li>You can update or delete your account information at any time.</li>
-        <li>You may opt out of marketing communications.</li>
-      </ul>
-      <h2>6. Changes to This Policy</h2>
-      <p>
-        We may update this Privacy Policy from time to time. Changes will be posted on this page.
-      </p>
-      <h2>7. Contact Us</h2>
-      <p>
-        For any questions about this policy, contact us at <a href="mailto:support@venturalink.com">support@venturalink.com</a>.
-      </p>
+      <div class="blog-list">
+        <div class="blog-post">
+          <div class="blog-post-title">How to Pitch Your Startup to Investors</div>
+          <div class="blog-post-meta">By Team Venturalink &middot; April 2025</div>
+          <div class="blog-post-summary">
+            Learn the key elements of a successful pitch, what investors look for, and how to make your business stand out in a crowded market.
+          </div>
+        </div>
+        <div class="blog-post">
+          <div class="blog-post-title">Top 5 Mistakes Founders Make (And How to Avoid Them)</div>
+          <div class="blog-post-meta">By Kavlin Kaur &middot; March 2025</div>
+          <div class="blog-post-summary">
+            Avoid common pitfalls in your startup journey with these practical tips from experienced entrepreneurs and mentors.
+          </div>
+        </div>
+        <div class="blog-post">
+          <div class="blog-post-title">Investor Trends in 2025: What’s Hot?</div>
+          <div class="blog-post-meta">By Team Venturalink &middot; February 2025</div>
+          <div class="blog-post-summary">
+            Explore the latest trends in startup funding, sectors attracting the most capital, and how you can position your business for success.
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -297,6 +252,4 @@
       </div>
     </div>
   </footer>
-  <script type="module" src="scripts/main.js"></script>
-</body>
-</html>
+  <script type
