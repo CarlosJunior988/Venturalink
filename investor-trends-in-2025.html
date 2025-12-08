@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cookie Policy | Venturalink</title>
+  <title>Investor Trends in 2025 | Venturalink</title>
   <link rel="icon" type="image/png" href="V.png">
   <link rel="stylesheet" href="styles/mainindex.css">
   <style>
@@ -14,7 +14,6 @@
       margin: 0;
       min-height: 100vh;
     }
-
     .main-header {
       background: #23243a;
       box-shadow: 0 2px 16px rgba(102,126,234,0.08);
@@ -23,60 +22,23 @@
       justify-content: center;
       align-items: center;
     }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-    }
-
-    .logo {
-      margin-right: 2rem;
-    }
-
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-
     .logo-icon svg {
       height: 2.5rem;
       width: 2.5rem;
       display: block;
     }
-
     .logo-text img {
       height: 2.2rem;
-      margin-right: 0.5rem;
+      margin-right: -8px;
       vertical-align: middle;
       filter: drop-shadow(0 0 8px #667eea);
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .nav-link {
-      padding: 0.5rem 0;
-      font-size: 1rem;
-      color: #e4e8f7;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .nav-link:hover {
-      color: #764ba2;
-    }
-
-    main {
-      margin-top: 60px;
-    }
-
-    .cookie-section {
+    .blog-post-section {
       max-width: 800px;
       margin: 3rem auto 2rem auto;
       background: rgba(34,36,58,0.95);
@@ -85,63 +47,53 @@
       box-shadow: 0 8px 32px rgba(102,126,234,0.12);
       text-align: left;
     }
-
-    .cookie-section h1 {
+    .blog-post-section h1 {
       color: #667eea;
       font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       letter-spacing: 1px;
-      text-align: center;
     }
-
-    .cookie-section h2 {
-      color: #764ba2;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 0.7rem;
+    .blog-post-meta {
+      color: #aab4e8;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
     }
-
-    .cookie-section p, .cookie-section ul {
+    .blog-post-section p {
       color: #e4e8f7;
       font-size: 1.08rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+     .blog-post-section h2 {
+      color: #764ba2;
+      font-size: 1.5rem;
+      margin-top: 2rem;
       margin-bottom: 1rem;
     }
-
-    .cookie-section ul {
-      padding-left: 1.5rem;
-    }
-
-    .cookie-section li {
-      margin-bottom: 0.5rem;
-    }
-
-    .cookie-section a {
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
       color: #667eea;
       text-decoration: none;
+      font-weight: bold;
     }
-
-    .cookie-section a:hover {
-      color: #764ba2;
+    .back-link:hover {
       text-decoration: underline;
     }
-
-    /* Footer styles */
+    /* Footer override for dark theme */
     .premium-footer {
       background: #18192b;
       color: #e4e8f7;
       border-top: 2px solid #23243a;
     }
-
     .footer-section h4 {
       color: #667eea;
     }
-
     .footer-links-grid a {
       color: #e4e8f7;
       text-decoration: none;
       transition: color 0.2s;
     }
-
     .footer-links-grid a:hover {
       color: #764ba2;
       text-decoration: underline;
@@ -180,11 +132,7 @@
         <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
         <a href="pricing.html" class="nav-link" data-text="Pricing"><span>Pricing</span></a>
         <a href="contact.html" class="nav-link" data-text="Contact"><span>Contact</span></a>
-        <a href="blog.html" class="nav-link" data-text="Blog"><span>Blog</span></a>
-        <a href="help.html" class="nav-link" data-text="Help"><span>Help Center</span></a>
-        <a href="guides.html" class="nav-link" data-text="Guides"><span>Guides</span></a>
-        <a href="api.html" class="nav-link" data-text="API"><span>API Docs</span></a>
-        <a href="terms.html" class="nav-link" data-text="Terms"><span>Terms of Service</span></a>
+        <a href="blog.html" class="nav-link active" data-text="Blog"><span>Blog</span></a>
         <a href="login.html" class="nav-link" data-text="Login"><span>Login</span></a>
         <a href="register.html" class="nav-link nav-link-cta"><span>Register</span><div class="nav-link-bg"></div></a>
       </div>
@@ -192,43 +140,37 @@
   </header>
 
   <main>
-    <section class="cookie-section">
-      <h1>Cookie Policy</h1>
-      <p>
-        This Cookie Policy explains how Venturalink uses cookies and similar technologies to recognize you when you visit our website.
-      </p>
-      <h2>1. What Are Cookies?</h2>
-      <p>
-        Cookies are small data files placed on your device when you visit a website. They help us remember your preferences and improve your experience.
-      </p>
-      <h2>2. How We Use Cookies</h2>
-      <ul>
-        <li>To remember your login and session information.</li>
-        <li>To analyze site usage and improve our services.</li>
-        <li>To personalize content and features.</li>
-      </ul>
-      <h2>3. Types of Cookies We Use</h2>
-      <ul>
-        <li><strong>Essential Cookies:</strong> Necessary for basic site functionality.</li>
-        <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our site.</li>
-        <li><strong>Preference Cookies:</strong> Remember your settings and choices.</li>
-      </ul>
-      <h2>4. Managing Cookies</h2>
-      <p>
-        You can control or delete cookies through your browser settings. However, disabling cookies may affect your experience on Venturalink.
-      </p>
-      <h2>5. Changes to This Policy</h2>
-      <p>
-        We may update this Cookie Policy from time to time. Changes will be posted on this page.
-      </p>
-      <h2>6. Contact Us</h2>
-      <p>
-        For any questions about our Cookie Policy, contact us at <a href="mailto:support@venturalink.com">support@venturalink.com</a>.
-      </p>
+    <section class="blog-post-section">
+      <h1>Investor Trends in 2025: What’s Hot?</h1>
+      <div class="blog-post-meta">By Team Venturalink &middot; February 2025</div>
+      
+      <p>The investment landscape is in a constant state of flux, with new technologies and market dynamics shaping where the smart money is flowing. As we move through 2025, several key trends have emerged, indicating a significant shift in investor priorities. For founders seeking funding, understanding these trends is crucial. Here’s a look at what’s hot in the world of startup investing this year.</p>
+
+      <h2>1. Sustainable and Impact-First Tech</h2>
+      <p>Investors are increasingly looking for companies that not only promise strong financial returns but also have a positive impact on the world. Sustainability is no longer a niche interest; it's a core investment thesis for many venture capitalists. This includes everything from renewable energy and circular economy models to sustainable agriculture and carbon capture technologies.</p>
+      <p><strong>What this means for founders:</strong> If your startup has a strong ESG (Environmental, Social, and Governance) component, make sure to highlight it in your pitch. Demonstrate how your business model is not just profitable but also sustainable and socially responsible.</p>
+
+      <h2>2. The Next Wave of AI and Automation</h2>
+      <p>Artificial intelligence continues to be a dominant theme, but the focus is shifting. While foundational models and generative AI captured the spotlight in previous years, investors in 2025 are looking for practical applications that solve specific industry problems. This includes AI-powered tools for drug discovery, autonomous logistics, and hyper-personalized customer experiences.</p>
+      <p><strong>What this means for founders:</strong> It's no longer enough to have an "AI startup." You need to show how your AI technology provides a tangible solution and a clear ROI for your customers. Focus on a niche and demonstrate deep domain expertise.</p>
+
+      <h2>3. The Future of Health and Wellness</h2>
+      <p>The pandemic accelerated the adoption of digital health technologies, and this trend shows no signs of slowing down. Investors are particularly interested in startups that are personalizing healthcare, from at-home diagnostics and remote patient monitoring to mental wellness platforms and longevity science. The focus is on proactive and preventative care, rather than reactive treatments.</p>
+      <p><strong>What this means for founders:</strong> If you're in the health tech space, emphasize how your solution empowers patients and improves outcomes. Data privacy and regulatory compliance are also critical, so be prepared to address these issues in detail.</p>
+
+      <h2>4. The Creator Economy and Web3</h2>
+      <p>The creator economy is maturing, and investors are looking for the tools and platforms that will power its next phase of growth. This includes everything from monetization tools for creators to decentralized social media platforms built on Web3 principles. The emphasis is on giving creators more ownership and control over their content and their audience.</p>
+      <p><strong>What this means for founders:</strong> Focus on building a strong community around your product. Demonstrate how you are empowering creators and providing them with new ways to earn a living. A clear understanding of tokenomics and decentralized governance is a plus if you're in the Web3 space.</p>
+
+      <h2>5. The New Era of B2B SaaS</h2>
+      <p>B2B SaaS is a perennially hot sector, but the bar is getting higher. In 2025, investors are looking for vertical SaaS solutions that cater to the specific needs of a particular industry. They are also interested in companies that are leveraging AI to automate workflows and provide predictive insights. Product-led growth (PLG) remains a popular go-to-market strategy, but founders also need to demonstrate a clear path to enterprise sales.</p>
+      <p><strong>What this means for founders:</strong> Know your industry inside and out. Show how your product is not just a "nice-to-have" but a "must-have" for your customers. Be prepared to discuss your go-to-market strategy in detail, including how you plan to acquire and retain customers.</p>
+
+      <a href="blog.html" class="back-link">&larr; Back to Blog</a>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (same as other pages) -->
   <footer class="premium-footer">
     <div class="footer-bg">
       <div class="footer-gradient"></div>
