@@ -633,11 +633,6 @@ body {
     backdrop-filter: blur(10px);
 }
 
-.floating-label textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
 .floating-label input:focus,
 .floating-label textarea:focus,
 .floating-label input:not(:placeholder-shown),
@@ -759,12 +754,6 @@ body {
     backdrop-filter: blur(10px);
 }
 
-/* Fix option background in dark mode */
-.custom-select select option {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-}
-
 .custom-select select:focus {
     border-color: var(--text-accent);
     box-shadow: 0 0 0 3px var(--focus-ring);
@@ -783,7 +772,6 @@ body {
     z-index: 2;
 }
 
-/* Arrow */
 .select-arrow {
     position: absolute;
     right: var(--space-lg);
@@ -794,16 +782,9 @@ body {
     transition: var(--transition-normal);
 }
 
-/* Arrow on focus */
 .custom-select select:focus ~ .select-arrow {
     color: var(--text-accent);
     transform: translateY(-50%) rotate(180deg);
-}
-
-.custom-select select:hover {
-    border-color: var(--text-accent);
-    color: var(--text-accent);
-    box-shadow: 0 0 12px rgba(75, 0, 130, 0.4);
 }
 
 /* Character Counter */
