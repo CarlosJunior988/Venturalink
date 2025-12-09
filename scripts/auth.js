@@ -1,6 +1,5 @@
 import { auth, db } from './firebase.js';
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-// TODO: Consider updating Firebase SDK version periodically
 
 export function getCurrentUser() {
     return auth.currentUser;
