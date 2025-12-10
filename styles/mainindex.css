@@ -154,45 +154,7 @@
   --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Toggle button styling */
-#theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--glass-border);
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  z-index: 9999;
-  transition: background var(--transition-normal), color var(--transition-normal);
-}
 
-/* ✅ Mobile view */
-@media (max-width: 768px) {
-  #theme-toggle {
-    margin-right: 45px;
-    top: 12px;
-    right: 45px;
-    padding: 6px 10px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  #theme-toggle {
-    top: 8px;
-    right: 8px;
-    padding: 4px 8px;
-    font-size: 12px;
-  }
-}
-
-
-#theme-toggle:hover {
-  background: var(--hover-bg);
-}
 
 
 /* =========================================
@@ -351,31 +313,43 @@ body {
    CURSOR FOLLOWER
 ========================================= */
 
-.cursor-follower {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    opacity: 0;
-    mix-blend-mode: difference;
+/* --- Custom Cursor Styles --- */
+.cursor__ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none; 
+  opacity: 0; /* Hidden by default */
+  transform: translate(0, 0);
+  will-change: transform;
+  z-index: 9999; /* Ensure it is on top */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition for showing/hiding */
+  mix-blend-mode: difference; /* Creates a contrast effect */
+  fill: white;
 }
 
+.cursor__ball--big {
+  width: 40px;
+  height: 40px;
+
+}
+
+
+
 @media (pointer: fine) {
-    .cursor-follower {
+    .cursor__ball {
         opacity: 0.8;
     }
 }
+
+
 
 /* =========================================
    PREMIUM HEADER & NAVIGATION
 ========================================= */
 
 .main-header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
@@ -970,68 +944,101 @@ main {
     background: var(--glass-border);
 }
 
-/* Scroll Indicator - Fixed */
+/* Scroll Indicator - Centered at bottom */
 .scroll-indicator {
-    position: relative; /* keep in flow */
+    position: absolute;
+    top: 0rem; /* distance from bottom */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* left-align children inside this box */
-    justify-content: center;
-    margin: 2rem auto 0; /* top spacing, auto horizontal centering */
-    gap: 0.5rem; /* space between line and text */
-    width: fit-content; /* shrink to content width */
-    margin-left: 44.5%;
+    align-items: center;
+    gap: 0.5rem;
 }
 
+/* Vertical line with gradient */
 .scroll-line {
     width: 2px;
-    height: 30px;
-    background: var(--gradient-primary);
+    height: 2rem; /* line height */
+    background: linear-gradient(to bottom, #0ea5e9, transparent);
     border-radius: 1px;
-    position: relative; /* keep for pseudo-element */
+    position: relative;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    margin-left: 50%;
 }
 
+/* Moving white block animation */
 .scroll-line::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 20px;
+    height: 0.8rem;
     background: white;
     animation: scroll-line-move 2s infinite ease-in-out;
 }
 
 @keyframes scroll-line-move {
     0% {
-        transform: translateY(-20px);
+        transform: translateY(-0.8rem);
         opacity: 0;
     }
     50% {
         opacity: 1;
     }
     100% {
-        transform: translateY(30px);
+        transform: translateY(2rem);
         opacity: 0;
     }
 }
 
+/* Scroll text */
 .scroll-text {
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    color: #6b7280;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-     margin-left: 1rem; /* small spacing from left if needed */
-    text-align: center; /* ensures it remains centered below the line */
+    letter-spacing: 0.05em;
 }
 
+/* Flashcards */
+    .flashcards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2.5rem 0 1rem 0;
+    }
+    .flashcard {
+      background: linear-gradient(135deg, #23243a 60%, #667eea 100%);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px rgba(102,126,234,0.18);
+      color: #fff;
+      padding: 1.5rem 1.2rem;
+      min-width: 180px;
+      max-width: 220px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .flashcard:hover {
+      transform: scale(1.07) rotate(-2deg);
+      box-shadow: 0 8px 32px #764ba2a0;
+      background: linear-gradient(135deg, #764ba2 60%, #667eea 100%);
+    }
+    .flashcard-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
 
 /* =========================================
    FEATURES SECTION - NEXT-LEVEL CARDS
 ========================================= */
+
+
 
 .features-section {
     padding: 8rem var(--space-xl);
@@ -1142,41 +1149,35 @@ main {
     border-color: rgba(102, 126, 234, 0.3);
 }
 
-/* Card Header: stack icon + heading consistently */
 .card-header {
     display: flex;
-    flex-direction: column; /* stack icon above the title */
-    align-items: center;    /* center horizontally */
-    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: space-between;
     margin-bottom: var(--space-xl);
-    gap: 1rem;              /* uniform spacing between icon and title */
     position: relative;
 }
 
-/* Icon container: consistent size and center alignment */
 .icon-container {
+    position: relative;
     width: 80px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;              /* remove any bottom margin */
-    position: relative;
+    margin-bottom: var(--space-lg);
 }
 
-/* Icon background inside container */
 .icon-bg {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background: var(--gradient-primary);
     border-radius: 50%;
     opacity: 0.1;
-    background: var(--gradient-primary);
     transition: all var(--transition-normal);
 }
-
 
 .feature-card:hover .icon-bg {
     opacity: 0.2;
@@ -1196,15 +1197,12 @@ main {
     transform: scale(1.1);
 }
 
-
-/* Card title: remove default margins to avoid misalignment */
 .card-header h3 {
     font-family: var(--font-primary);
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0; /* no margin */
-    text-align: center;
+    margin-bottom: var(--space-sm);
 }
 
 .card-number {
@@ -1948,192 +1946,38 @@ main {
     color: var(--text-primary);
 }
 
-/* Rocket Back to Top Button */
+/* Scroll to Top Button */
+
+/* Back to Top Button (Modern, Themed) */
 #backToTopBtn {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 2.5rem;
+    right: 2.5rem;
     z-index: 1200;
+    width: 48px;
+    height: 48px;
     border: none;
     outline: none;
     background: transparent;
+    border-radius: 50%;
+    box-shadow: 0 4px 24px rgba(102,126,234,0.18), 0 1.5px 8px rgba(118,75,162,0.10);
     cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.2s, background 0.2s;
     padding: 0;
-    width: 50px;
-    height: 70px;
-    transition: transform 0.2s ease;
-    will-change: transform;
+    opacity: 0.92;
+    backdrop-filter: blur(2px);
 }
 
-#backToTopBtn .rocket-svg {
+#backToTopBtn svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 2px 8px rgba(102, 126, 234, 0.25));
-    transition: filter 0.3s ease;
-}
-
-/* Hover effect: smooth tilt and wiggle */
-#backToTopBtn:hover .rocket-svg {
-    animation: wiggle 0.5s ease-in-out infinite;
-    filter: drop-shadow(0 4px 12px rgba(118, 75, 162, 0.4));
-}
-
-@keyframes wiggle {
-    0%, 100% { transform: rotate(-3deg) translateY(0); }
-    25% { transform: rotate(2deg) translateY(-4px); }
-    50% { transform: rotate(3deg) translateY(-8px); }
-    75% { transform: rotate(-2deg) translateY(-4px); }
-}
-
-/* Launch animation with smooth scroll sync */
-#backToTopBtn.launching {
-    animation: rocket-launch 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    pointer-events: none;
-}
-
-@keyframes rocket-launch {
-    0% { 
-        transform: translateY(0) scale(1) rotate(0deg); 
-        opacity: 1; 
-    }
-    10% {
-        transform: translateY(-30px) scale(1.05) rotate(-2deg);
-    }
-    100% { 
-        transform: translateY(-150vh) scale(0.3) rotate(3deg); 
-        opacity: 0; 
-    }
-}
-
-/* Effects container - FIXED POSITIONING */
-/* Effects container - FIXED POSITIONING */
-.effects {
-    position: absolute;
-
-    /* === THE FIX === */
-    /* This locks the effects container to the bottom of the rocket button */
-    top: 100%;          
-    /* This pulls the flames up slightly to look like they're coming from the base */
-    margin-top: -15px; 
-    /* We unset the bottom property to avoid conflicts */
-    bottom: auto;       
-
-    /* These lines correctly center the effects horizontally */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Hide effects by default */
-.flames, .smoke-trail {
-    display: none;
-}
-
-/* Show effects only during launch */
-#backToTopBtn.launching .flames,
-#backToTopBtn.launching .smoke-trail {
     display: block;
 }
 
-/* Flames container positioning */
-.flames {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    top: auto;
-}
-
-/* Flame Styling - FIXED POSITIONING */
-.flame {
-    position: absolute;
-    top: 0;
-    bottom: auto;
-    width: 12px;
-    height: 35px;
-    background: linear-gradient(to top, #667eea 0%, #764ba2 30%, #ffa500 70%, #ffd700 100%);
-    border-radius: 50% 50% 15% 15%;
-    opacity: 0;
-    animation: flameGlow 0.15s linear infinite, flameFade 1.5s ease-out forwards;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
-}
-
-.flame:nth-child(1) { 
-    left: 50%; 
-    transform: translateX(-50%); 
-    height: 40px;
-    animation-delay: 0s;
-}
-
-.flame:nth-child(2) { 
-    left: 50%; 
-    transform: translateX(-15px);
-    animation-delay: 0.08s;
-    height: 32px;
-}
-
-.flame:nth-child(3) { 
-    left: 50%;
-    transform: translateX(3px);
-    animation-delay: 0.05s;
-    height: 35px;
-}
-
-@keyframes flameGlow {
-    0%, 100% { 
-        opacity: 0.9;
-    }
-    50% { 
-        opacity: 1;
-    }
-}
-
-@keyframes flameFade {
-    0% { opacity: 0; }
-    10% { opacity: 0.95; }
-    85% { opacity: 0.9; }
-    100% { opacity: 0; }
-}
-
-/* Smoke trail container positioning */
-.smoke-trail {
-    position: relative;
-    width: 100%;
-    height: 100px;
-    top: auto;
-}
-
-/* Smoke Puff Styling - FIXED POSITIONING */
-.smoke {
-    position: absolute;
-    top: 0;
-    bottom: auto;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    background: radial-gradient(circle, rgba(118, 75, 162, 0.4) 0%, rgba(102, 126, 234, 0.2) 50%, transparent 100%);
-    border-radius: 50%;
-    opacity: 0;
-    animation: puff 1.4s ease-out forwards;
-}
-
-.smoke:nth-child(1) { animation-delay: 0.1s; }
-.smoke:nth-child(2) { animation-delay: 0.3s; }
-.smoke:nth-child(3) { animation-delay: 0.5s; }
-.smoke:nth-child(4) { animation-delay: 0.7s; }
-
-@keyframes puff {
-    0% { 
-        transform: translate(-50%, 0) scale(0.5); 
-        opacity: 0.8; 
-    }
-    50% {
-        opacity: 0.5;
-    }
-    100% { 
-        transform: translate(calc(-50% + var(--random-x, 0px)), 70px) scale(3); 
-        opacity: 0; 
-    }
+#backToTopBtn:hover {
+    box-shadow: 0 8px 32px rgba(102,126,234,0.28), 0 2px 12px rgba(118,75,162,0.18);
+    transform: translateY(-4px) scale(1.08);
+    opacity: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
