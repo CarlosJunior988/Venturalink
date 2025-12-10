@@ -19,8 +19,7 @@
       font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
       margin: 0;
       min-height: 100vh;
-    }
-
+    }    
     .features-section {
       max-width: 900px;
       margin: 3rem auto 2rem auto;
@@ -30,14 +29,12 @@
       box-shadow: 0 8px 32px rgba(102,126,234,0.12);
       text-align: center;
     }
-
     .features-section h1 {
       color: #667eea;
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
       letter-spacing: 1px;
     }
-
     .feature-cards {
       display: flex;
       flex-wrap: wrap;
@@ -45,7 +42,6 @@
       justify-content: center;
       margin: 2.5rem 0 1rem 0;
     }
-
     .feature-card {
       background: linear-gradient(135deg, #23243a 60%, #667eea 100%);
       border-radius: 1.2rem;
@@ -60,58 +56,38 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-
-      /* Flexbox to align icon and content */
-      display: flex;
-      flex-direction: column;
-      align-items: center; /* horizontal center */
-      text-align: center;
+      text-align: left;
     }
-
     .feature-card:hover {
       transform: scale(1.07) rotate(-2deg);
       box-shadow: 0 8px 32px #764ba2a0;
       background: linear-gradient(135deg, #764ba2 60%, #667eea 100%);
     }
-
-    /* Icon wrapper for consistent alignment */
     .feature-card-icon {
       font-size: 2rem;
-      margin-bottom: 0.75rem; /* uniform vertical spacing */
+      margin-bottom: 0.5rem;
       display: block;
-      flex-shrink: 0; /* prevent shrinking */
     }
-
     .feature-card-title {
       color: #aab4e8;
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      line-height: 1.2; /* ensures consistent spacing */
     }
-
-    .feature-card p {
-      margin: 0;
-      font-weight: 400;
-    }
-
-    /* Footer styling */
+    /* Footer override for dark theme */
     .premium-footer {
       background: #18192b;
       color: #e4e8f7;
       border-top: 2px solid #23243a;
     }
-
     .footer-section h4 {
       color: #667eea;
     }
-
     .footer-links-grid a {
       color: #e4e8f7;
       text-decoration: none;
       transition: color 0.2s;
     }
-
     .footer-links-grid a:hover {
       color: #764ba2;
       text-decoration: underline;
@@ -144,7 +120,7 @@
         </a>
       </div>
       <div class="nav-links">
-        <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+        
         <a href="index.html" class="nav-link" data-text="Home"><span>Home</span></a>
         <a href="about.html" class="nav-link" data-text="About"><span>About Us</span></a>
         <a href="features.html" class="nav-link" data-text="Features"><span>Features</span></a>
@@ -157,42 +133,45 @@
   <main>
     <section class="features-section">
       <h1>Platform Features</h1>
-      <p>Discover how Venturalink empowers entrepreneurs, investors, and advisors with cutting-edge tools and seamless connections.</p>
+      <p>
+        Discover how Venturalink empowers entrepreneurs, investors, and advisors with cutting-edge tools and seamless connections.
+      </p>
       <div class="feature-cards">
         <div class="feature-card">
           <span class="feature-card-icon">🤝</span>
           <div class="feature-card-title">Smart Matchmaking</div>
-          <p>Connects entrepreneurs, investors, and advisors for meaningful partnerships.</p>
+          Connects entrepreneurs, investors, and advisors for meaningful partnerships.
         </div>
         <div class="feature-card">
           <span class="feature-card-icon">🚀</span>
           <div class="feature-card-title">Growth Support</div>
-          <p>Access resources, mentorship, and analytics to scale your business.</p>
+          Access resources, mentorship, and analytics to scale your business.
         </div>
         <div class="feature-card">
           <span class="feature-card-icon">🔒</span>
           <div class="feature-card-title">Secure & Modern</div>
-          <p>Built with the latest technology for safe, seamless experiences.</p>
+          Built with the latest technology for safe, seamless experiences.
         </div>
         <div class="feature-card">
           <span class="feature-card-icon">🌐</span>
           <div class="feature-card-title">Global Reach</div>
-          <p>Connect with users and opportunities across 50+ countries.</p>
+          Connect with users and opportunities across 50+ countries.
         </div>
         <div class="feature-card">
           <span class="feature-card-icon">📊</span>
           <div class="feature-card-title">Advanced Analytics</div>
-          <p>Track progress, deals, and growth with real-time insights.</p>
+          Track progress, deals, and growth with real-time insights.
         </div>
         <div class="feature-card">
           <span class="feature-card-icon">💡</span>
           <div class="feature-card-title">Expert Mentorship</div>
-          <p>Get guidance from experienced advisors and industry leaders.</p>
+          Get guidance from experienced advisors and industry leaders.
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer (same as index.html) -->
   <footer class="premium-footer">
     <div class="footer-bg">
       <div class="footer-gradient"></div>
