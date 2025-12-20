@@ -1844,6 +1844,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 document.addEventListener('DOMContentLoaded', init);
 
+// Animated Count Up Stats
+const statsSection = document.getElementById("animated-stats");
+const statNumbers = document.querySelectorAll(".stat-number");
+let statsAnimated = false;
+
+function animateStats() {
+  if (statsAnimated) return;
+  
+  const sectionTop = statsSection.getBoundingClientRect().top;
+  const triggerPoint = window.innerHeight - 100;
+
+  if (sectionTop < triggerPoint) {
+    statNumbers.forEach((num) => {
+      const target = +num.getAttribute("data-target");
+      const duration = 2000; // 2 seconds
+      let start = 0;
+      const increment = target / (duration / 16);
+
+      function updateNumber() {
+        start += increment;
+        if (start < target) {
+          num.textContent = Math.ceil(start);
+          requestAnimationFrame(updateNumber);
+        } else {
+          num.textContent = target;
+        }
+      }
+      updateNumber();
+    });
+    statsAnimated = true;
+  }
+}
+
+window.addEventListener("scroll", animateStats);
+window.addEventListener("load", animateStats);
+
+const carousel = document.querySelector('.testimonials-carousel');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+});
+carousel.addEventListener('mouseleave', () => isDown = false);
+carousel.addEventListener('mouseup', () => isDown = false);
+carousel.addEventListener('mousemove', (e) => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 2; 
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
+
+
 
 // ===== THEME DEBUG MESSAGE =====
 
