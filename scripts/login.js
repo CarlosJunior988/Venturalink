@@ -7,63 +7,8 @@ import {
   EmailAuthProvider,
   linkWithCredential
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
-// Add Google Button Styles directly to the page
-function addGoogleButtonStyles() {
-  const style = document.createElement('style');
-  style.textContent = `
-    /* Google Button Styling */
-    #btn-google-sign {
-      background-color: #4285f4 !important;
-      color: white !important;
-      border: none !important;
-      border-radius: 8px !important;
-      padding: 12px 24px !important;
-      font-weight: 500 !important;
-      font-size: 14px !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25) !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 12px !important;
-      width: 100% !important;
-      margin-top: 16px !important;
-    }
-
-    #btn-google-sign:hover {
-      background-color: #357ae8 !important;
-      transform: translateY(-1px) !important;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
-    }
-
-    #btn-google-sign:active {
-      background-color: #3367d6 !important;
-      transform: translateY(0) !important;
-    }
-
-    #btn-google-sign:disabled {
-      opacity: 0.7 !important;
-      cursor: not-allowed !important;
-      transform: none !important;
-    }
-
-    #btn-google-sign .btn-text {
-      color: white !important;
-      font-weight: 500 !important;
-    }
-
-    /* Google icon styling */
-    #btn-google-sign svg {
-      width: 18px !important;
-      height: 18px !important;
-      flex-shrink: 0 !important;
-    }
-  `;
-  document.head.appendChild(style);
-}
 
 // Password visibility toggle
 const passwordInput = document.getElementById('password');
@@ -86,64 +31,6 @@ if (passwordInput && passwordToggle) {
 const provider = new GoogleAuthProvider();
 const loginForm = document.getElementById("login-form");
 
-// === Google Button Styling Fix ===
-function styleGoogleButton() {
-  const googleBtn = document.getElementById("btn-google-sign");
-  if (googleBtn) {
-    // Ensure proper styling
-    googleBtn.style.backgroundColor = "#4285f4";
-    googleBtn.style.color = "white";
-    googleBtn.style.border = "none";
-    googleBtn.style.borderRadius = "8px";
-    googleBtn.style.padding = "12px 24px";
-    googleBtn.style.fontWeight = "500";
-    googleBtn.style.boxShadow = "0 2px 4px 0 rgba(0,0,0,0.25)";
-    googleBtn.style.display = "flex";
-    googleBtn.style.alignItems = "center";
-    googleBtn.style.justifyContent = "center";
-    googleBtn.style.gap = "12px";
-    googleBtn.style.width = "100%";
-    googleBtn.style.marginTop = "16px";
-    
-    // Style the text inside
-    const btnText = googleBtn.querySelector('.btn-text');
-    if (btnText) {
-      btnText.style.color = "white";
-      btnText.style.fontWeight = "500";
-    }
-    
-    // Add hover effects
-    googleBtn.addEventListener('mouseenter', function() {
-      this.style.backgroundColor = "#357ae8";
-      this.style.transform = "translateY(-1px)";
-      this.style.boxShadow = "0 4px 8px rgba(0,0,0,0.3)";
-    });
-    
-    googleBtn.addEventListener('mouseleave', function() {
-      this.style.backgroundColor = "#4285f4";
-      this.style.transform = "translateY(0)";
-      this.style.boxShadow = "0 2px 4px 0 rgba(0,0,0,0.25)";
-    });
-    
-    // Add active/pressed effect
-    googleBtn.addEventListener('mousedown', function() {
-      this.style.backgroundColor = "#3367d6";
-      this.style.transform = "translateY(0)";
-    });
-    
-    googleBtn.addEventListener('mouseup', function() {
-      this.style.backgroundColor = "#4285f4";
-      this.style.transform = "translateY(-1px)";
-    });
-  }
-}
-
-// Initialize button styling when page loads
-document.addEventListener('DOMContentLoaded', function() {
-  addGoogleButtonStyles();
-  styleGoogleButton();
-});
-
 // === Email/Password Login ===
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
@@ -164,15 +51,10 @@ if (loginForm) {
       // ✅ Check if this email uses Google only
       const methods = await fetchSignInMethodsForEmail(auth, email);
       if (methods.includes("google.com") && !methods.includes("password")) {
-        showNotification("This email is registered with Google. Please use the 'Sign in with Google' button.", "info");
-        resetButton();
-        return;
-      }
-
-      // If no account exists
-      if (methods.length === 0) {
-        showNotification("No account found with this email. Please sign up first.", "error");
-        resetButton();
+        showNotification("⚠️ This account uses Google Sign-In. Please use the Google login option.", "info");
+        btnText.textContent = originalText;
+        submitBtn.style.opacity = "1";
+        submitBtn.disabled = false;
         return;
       }
 
@@ -193,152 +75,64 @@ if (loginForm) {
           window.location.href = "./profile.html";
         }, 1000);
       } else {
-        // Create user document if it doesn't exist
-        await setDoc(userRef, {
-          email: user.email,
-          userType: "user",
-          createdAt: new Date()
-        });
-        localStorage.setItem("userType", "user");
-        
-        btnText.textContent = "Success!";
-        submitBtn.style.background = "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)";
-
-        setTimeout(() => {
-          window.location.href = "./profile.html";
-        }, 1000);
+        throw new Error("User profile not found. Please complete registration.");
       }
     } catch (error) {
-      resetButton();
-      
-      // User-friendly error messages
-      let errorMessage = "Login failed. ";
-      
-      switch (error.code) {
-        case 'auth/invalid-login-credentials':
-          errorMessage += "The email or password you entered is incorrect.";
-          break;
-        case 'auth/user-not-found':
-          errorMessage += "No account found with this email. Please sign up first.";
-          break;
-        case 'auth/wrong-password':
-          errorMessage += "The password you entered is incorrect.";
-          break;
-        case 'auth/invalid-email':
-          errorMessage += "Please enter a valid email address.";
-          break;
-        case 'auth/user-disabled':
-          errorMessage += "This account has been temporarily disabled.";
-          break;
-        case 'auth/too-many-requests':
-          errorMessage += "Too many login attempts. Please try again in a few minutes.";
-          break;
-        case 'auth/network-request-failed':
-          errorMessage += "Network error. Please check your internet connection.";
-          break;
-        default:
-          errorMessage += "Please try again or use a different login method.";
-      }
-      
-      showNotification(errorMessage, "error");
-    }
-
-    function resetButton() {
       btnText.textContent = originalText;
       submitBtn.style.opacity = "1";
       submitBtn.disabled = false;
       submitBtn.style.background = "";
+
+      showNotification("Login failed: " + error.message, "error");
     }
   });
 }
 
-// === Google Sign-In ===
+// === Google Sign-In (BLOCK overwrite) ===
 const googleBtn = document.getElementById("btn-google-sign");
 if (googleBtn) {
-  // Apply initial styling
-  styleGoogleButton();
-  
   googleBtn.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    const btnText = googleBtn.querySelector(".btn-text");
-    const originalText = btnText.textContent;
-    btnText.textContent = "Connecting...";
-    googleBtn.style.opacity = "0.7";
-    googleBtn.disabled = true;
-
     try {
+      // 🔍 Pre-check before signInWithPopup
       const emailInput = document.getElementById("login-email");
       let emailToCheck = emailInput ? emailInput.value.trim() : null;
 
       if (emailToCheck) {
         const methods = await fetchSignInMethodsForEmail(auth, emailToCheck);
         if (methods.includes("password") && !methods.includes("google.com")) {
-          showNotification("This email is already registered with a password. Please use email and password to login.", "info");
-          resetGoogleButton();
+          showNotification("⚠️ This email is registered with a password. Use email login instead.", "info");
           return;
         }
       }
 
+      // Proceed with Google only if not password user
       const result = await signInWithPopup(auth, provider);
       const googleUser = result.user;
 
-      // Create/update user document in Firestore
-      const userRef = doc(db, "users", googleUser.uid);
-      const userDoc = await getDoc(userRef);
-      
-      if (!userDoc.exists()) {
-        await setDoc(userRef, {
-          email: googleUser.email,
-          userType: "user",
-          createdAt: new Date(),
-          name: googleUser.displayName || "User"
-        });
-        localStorage.setItem("userType", "user");
-      } else {
-        const userData = userDoc.data();
-        localStorage.setItem("userType", userData.userType);
-      }
-
-      showNotification("Successfully signed in with Google!", "success");
-      
-      setTimeout(() => {
-        window.location.href = "./profile.html";
-      }, 1000);
-
-    } catch (error) {
-      resetGoogleButton();
-      
-      if (error.code !== 'auth/popup-closed-by-user') {
-        let errorMessage = "Google sign-in failed. ";
-        
-        switch (error.code) {
-          case 'auth/account-exists-with-different-credential':
-            errorMessage += "This email is already registered with a different method. Please use email and password login.";
-            break;
-          case 'auth/popup-blocked':
-            errorMessage += "Popup was blocked. Please allow popups for this site.";
-            break;
-          case 'auth/unauthorized-domain':
-            errorMessage += "This domain is not authorized for Google sign-in.";
-            break;
-          case 'auth/network-request-failed':
-            errorMessage += "Network error. Please check your internet connection.";
-            break;
-          default:
-            errorMessage += "Please try again or use email login.";
+      // Double check after sign-in — if it’s a new account, link optional password
+      const methods = await fetchSignInMethodsForEmail(auth, googleUser.email);
+      if (methods.includes("password")) {
+        try {
+          const password = prompt("Enter your password to link your existing account with Google:");
+          if (password) {
+            const cred = EmailAuthProvider.credential(googleUser.email, password);
+            await linkWithCredential(googleUser, cred);
+            showNotification("✅ Google and Email accounts linked successfully!", "success");
+          }
+        } catch (linkErr) {
+          console.warn("Linking failed:", linkErr);
         }
-        
-        showNotification(errorMessage, "error");
       }
-    }
 
-    function resetGoogleButton() {
-      btnText.textContent = originalText;
-      googleBtn.style.opacity = "1";
-      googleBtn.disabled = false;
-      // Re-apply styling after reset
-      styleGoogleButton();
+      console.log("Signed in with Google:", googleUser);
+      window.location.href = "./profile.html";
+    } catch (error) {
+      if (error.code !== 'auth/popup-closed-by-user') {
+        showNotification("Google Sign-in failed: " + error.message, "error");
+        console.error("Google Sign-in Error:", error);
+      }
     }
   });
 }
