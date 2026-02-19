@@ -1,6 +1,5 @@
 // Enhanced Proposals JavaScript with Premium UI Interactions
 import { auth, db } from './firebase.js';
-import { collection, query, where, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 // DOM Elements
 const proposalsGrid = document.getElementById('proposals-grid');
@@ -324,163 +323,65 @@ function showEmptyState() {
 }
 
 // Enhanced Proposals Loading with Animations
-// async function loadProposals(filters = {}) {
-//     if (isLoading) return;
-    
-//     isLoading = true;
-//     showLoadingState();
-    
-//     try {
-//         let q = query(collection(db, 'proposals'), where('status', '==', 'pending'));
-
-//         // Apply category filter
-//         if (filters.category) {
-//             q = query(collection(db, 'proposals'), where('status', '==', 'pending'), where('category', '==', filters.category));
-//         }
-
-//         const snapshot = await getDocs(q);
-//         proposals = [];
-
-//         snapshot.forEach(doc => {
-//             proposals.push({ id: doc.id, ...doc.data() });
-//         });
-
-//         // Apply amount filter
-//         if (filters.amount) {
-//             const [min, max] = filters.amount.split('-').map(Number);
-//             proposals = proposals.filter(proposal => {
-//                 if (max) {
-//                     return proposal.amount >= min && proposal.amount <= max;
-//                 } else {
-//                     return proposal.amount >= min;
-//                 }
-//             });
-//         }
-
-//         // Apply sorting with enhanced logic
-//         switch (filters.sort) {
-//             case 'oldest':
-//                 proposals.sort((a, b) => a.createdAt?.toDate() - b.createdAt?.toDate());
-//                 break;
-//             case 'amount-low':
-//                 proposals.sort((a, b) => a.amount - b.amount);
-//                 break;
-//             case 'amount-high':
-//                 proposals.sort((a, b) => b.amount - a.amount);
-//                 break;
-//             default: // 'newest'
-//                 proposals.sort((a, b) => b.createdAt?.toDate() - a.createdAt?.toDate());
-//         }
-
-//         filteredProposals = [...proposals];
-//         displayProposals();
-
-//     } catch (error) {
-//         console.error('Error loading proposals:', error);
-//         showAlert('Failed to load opportunities. Please try again.', 'error');
-//         showEmptyState();
-//     } finally {
-//         isLoading = false;
-//     }
-// }
-
-
 async function loadProposals(filters = {}) {
     if (isLoading) return;
+    
     isLoading = true;
-
     showLoadingState();
-
+    
     try {
-        // ✅ 1. FETCH ALL PENDING PROPOSALS (NO CATEGORY FILTER IN FIRESTORE)
-        const q = query(
-            collection(db, 'proposals'),
-            where('status', '==', 'pending')
-        );
+        let query = db.collection('proposals').where('status', '==', 'pending');
 
-        const snapshot = await getDocs(q);
-
-        proposals = snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        }));
-
-        console.log('Fetched proposals:', proposals.length);
-
-        // ✅ 2. CLIENT-SIDE FILTERING (SAFE)
-        let result = [...proposals];
-
-        // CATEGORY FILTER
+        // Apply category filter
         if (filters.category) {
-            result = result.filter(p =>
-                p.category &&
-                p.category.toLowerCase() === filters.category.toLowerCase()
-            );
+            query = query.where('category', '==', filters.category);
         }
 
-        // AMOUNT FILTER (SAFE PARSING)
+        const snapshot = await query.get();
+        proposals = [];
+
+        snapshot.forEach(doc => {
+            proposals.push({ id: doc.id, ...doc.data() });
+        });
+
+        // Apply amount filter
         if (filters.amount) {
-            let min = 0;
-            let max = Infinity;
-
-            switch (filters.amount) {
-                case '0-10000':
-                    min = 0; max = 10000;
-                    break;
-                case '10000-50000':
-                    min = 10000; max = 50000;
-                    break;
-                case '50000-100000':
-                    min = 50000; max = 100000;
-                    break;
-            }
-
-            result = result.filter(p =>
-                typeof p.amount === 'number' &&
-                p.amount >= min &&
-                p.amount <= max
-            );
+            const [min, max] = filters.amount.split('-').map(Number);
+            proposals = proposals.filter(proposal => {
+                if (max) {
+                    return proposal.amount >= min && proposal.amount <= max;
+                } else {
+                    return proposal.amount >= min;
+                }
+            });
         }
 
-        // SORTING (CRASH-PROOF)
+        // Apply sorting with enhanced logic
         switch (filters.sort) {
             case 'oldest':
-                result.sort((a, b) =>
-                    (a.createdAt?.toDate?.() || 0) -
-                    (b.createdAt?.toDate?.() || 0)
-                );
+                proposals.sort((a, b) => a.createdAt?.toDate() - b.createdAt?.toDate());
                 break;
-
             case 'amount-low':
-                result.sort((a, b) => a.amount - b.amount);
+                proposals.sort((a, b) => a.amount - b.amount);
                 break;
-
             case 'amount-high':
-                result.sort((a, b) => b.amount - a.amount);
+                proposals.sort((a, b) => b.amount - a.amount);
                 break;
-
-            default: // newest
-                result.sort((a, b) =>
-                    (b.createdAt?.toDate?.() || 0) -
-                    (a.createdAt?.toDate?.() || 0)
-                );
+            default: // 'newest'
+                proposals.sort((a, b) => b.createdAt?.toDate() - a.createdAt?.toDate());
         }
 
-        filteredProposals = result;
-
-        console.log('After filters:', filteredProposals.length);
-
+        filteredProposals = [...proposals];
         displayProposals();
 
     } catch (error) {
         console.error('Error loading proposals:', error);
-        showAlert('Failed to load opportunities.', 'error');
+        showAlert('Failed to load opportunities. Please try again.', 'error');
         showEmptyState();
     } finally {
         isLoading = false;
     }
 }
-
 
 // Enhanced Display Function
 function displayProposals() {
@@ -580,23 +481,13 @@ function debounce(func, wait) {
     };
 }
 
-// const debouncedLoadProposals = debounce(() => {
-//     loadProposals({
-//         category: categoryFilter.value,
-//         amount: amountFilter.value,
-//         sort: sortBy.value
-//     });
-// }, 300);
-
-
 const debouncedLoadProposals = debounce(() => {
     loadProposals({
-        category: categoryFilter.value || null,
-        amount: amountFilter.value || null,
-        sort: sortBy.value || 'newest'
+        category: categoryFilter.value,
+        amount: amountFilter.value,
+        sort: sortBy.value
     });
 }, 300);
-
 
 // Enhanced filter event listeners
 [categoryFilter, amountFilter, sortBy].forEach(filter => {
@@ -700,11 +591,10 @@ auth.onAuthStateChanged(async (user) => {
     try {
         updateDebugInfo('Checking permissions...', 'Loading...');
         
-        const userDocRef = doc(db, 'users', user.uid);
-        const userDoc = await getDoc(userDocRef);
-        console.log('User document:', userDoc.exists() ? 'Found' : 'Not found');
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        console.log('User document:', userDoc.exists ? 'Found' : 'Not found');
         
-        if (!userDoc.exists()) {
+        if (!userDoc.exists) {
             console.log('User document not found');
             updateDebugInfo('Logged in', 'Document not found');
             showAlert('User profile not found. Redirecting to dashboard...', 'error');
