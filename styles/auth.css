@@ -288,9 +288,7 @@ body {
     box-shadow: var(--shadow-strong);
     position: relative;
     overflow: hidden;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
+    width: 500px;
 }
 
 .auth-card::before {
@@ -595,12 +593,11 @@ body {
     }
     
     .auth-main {
-        padding: 1rem;
+        padding: var(--space-lg);
     }
     
     .auth-card {
-        padding: 1.5rem;
-        border-radius: 16px;
+        padding: var(--space-xl);
     }
     
     .auth-title {
@@ -624,12 +621,11 @@ body {
     }
     
     .auth-main {
-        padding: 0.75rem;
+        padding: var(--space-md);
     }
     
     .auth-card {
-        padding: 1.25rem;
-        max-width: 100%;
+        padding: var(--space-lg);
     }
     
     .logo-img {
