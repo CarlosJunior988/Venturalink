@@ -458,57 +458,5 @@ We welcome contributions from developers of all skill levels! Here are some ways
 
 *Thank you to everyone who has made Venturalink better! 💚*
 
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-<h2 id="code-of-conduct">📜 Code of Conduct</h2>
-
-Please refer to the [`Code of Conduct`](https://github.com/eccentriccoder01/Venturalink/blob/main/CODE_OF_CONDUCT.md) for details on contributing guidelines and community standards.
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-<h2 id="contribution-guidelines">🤝👤 Contribution Guidelines</h2>
-
-We love our contributors! If you'd like to help, please check out our [`CONTRIBUTE.md`](https://github.com/eccentriccoder01/Venturalink/blob/main/CONTRIBUTING.md) file for guidelines.
-
->Thank you once again to all our contributors who has contributed to **Venturalink!** Your efforts are truly appreciated. 💖👏
-
-<!-- Contributors badge (auto-updating) -->
-
-[![Contributors](https://img.shields.io/github/contributors/eccentriccoder01/Venturalink?style=for-the-badge)](https://github.com/eccentriccoder01/Venturalink/contributors)
-
-<!-- Contributors avatars (auto-updating) -->
-<p align="left">
-  <a href="https://github.com/eccentriccoder01/Venturalink/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=eccentriccoder01/Venturalink" alt="Contributors" />
-  </a>
-</p>
-
-See the full list of contributors and their contributions on the [`GitHub Contributors Graph`](https://github.com/eccentriccoder01/Venturalink/graphs/contributors).
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-<h2 align="center">
-<p style="font-family:var(--ff-philosopher);font-size:3rem;"><b> Show some <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Red%20Heart.png" alt="Red Heart" width="40" height="40" /> by starring this awesome repository!
-</p>
-</h2>
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-<h2 id="suggestions-feedback">💡 Suggestions & Feedback</h2>
-
-Feel free to open issues or discussions if you have any feedback, feature suggestions, or want to collaborate!
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-<h2 id="show-your-support">🙌 Show Your Support</h2>
-
-*If you find Venturalink project helpful, give it a star! ⭐ to support more such educational initiatives:*
-
-- ⭐ **Starring the repository**
-- 🐦 **Sharing on social media**
-- 💬 **Telling your friends and colleagues**
-- 🤝 **Contributing to the project**
-
-
 
 > Ready to show off your coding achievements? Get started with **Venturalink** today! 🚀
